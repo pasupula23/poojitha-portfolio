@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Poojitha Pasupula - Java Full Stack Developer portfolio with Java, Spring Boot, Microservices, Kafka, AWS, Azure, React, and Angular." />
+  <title>Poojitha Pasupula | Java Full Stack Developer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #020713;
+      --bg2: #050b1d;
+      --cyan: #08d9ff;
+      --blue: #1687ff;
+      --purple: #9b4dff;
+      --text: #f4f7fb;
+      --muted: #a8b5ca;
+      --line: rgba(8, 217, 255, 0.25);
+      --panel: rgba(5, 15, 35, 0.72);
+      --panel2: rgba(255,255,255,0.045);
+      --shadow-cyan: rgba(8, 217, 255, 0.35);
+      --shadow-purple: rgba(155, 77, 255, 0.35);
+      --max: 1500px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Rajdhani', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -4;
+      background:
+        radial-gradient(circle at 18% 40%, rgba(8, 217, 255, 0.16), transparent 28%),
+        radial-gradient(circle at 82% 44%, rgba(155, 77, 255, 0.17), transparent 32%),
+        linear-gradient(180deg, #01040c 0%, #050917 55%, #030612 100%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      background-image:
+        linear-gradient(rgba(8,217,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(155,77,255,0.035) 1px, transparent 1px);
+      background-size: 90px 90px;
+      opacity: 0.55;
+      mask-image: linear-gradient(to bottom, black, transparent 88%);
+    }
+
+    .particles {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 5% 18%, rgba(8,217,255,.9) 0 2px, transparent 3px),
+        radial-gradient(circle at 18% 14%, rgba(8,217,255,.8) 0 1.5px, transparent 2.5px),
+        radial-gradient(circle at 50% 43%, rgba(8,217,255,.7) 0 2px, transparent 3px),
+        radial-gradient(circle at 86% 22%, rgba(155,77,255,.9) 0 2px, transparent 3px),
+        radial-gradient(circle at 93% 56%, rgba(155,77,255,.8) 0 2px, transparent 3px),
+        radial-gradient(circle at 75% 38%, rgba(8,217,255,.8) 0 1.5px, transparent 2.5px);
+      opacity: .8;
+    }
+
+    .container {
+      width: min(100% - 80px, var(--max));
+      margin: 0 auto;
+    }
+
+    /* NAV */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 99;
+      height: 98px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid rgba(8,217,255,.15);
+      background: rgba(2, 7, 19, 0.78);
+      backdrop-filter: blur(22px);
+    }
+    .nav-inner {
+      width: min(100% - 80px, var(--max));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 260px 1fr auto;
+      align-items: center;
+      gap: 30px;
+    }
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.55rem;
+      line-height: .92;
+      letter-spacing: .14em;
+      font-weight: 800;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+    }
+    .nav-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .86rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text);
+      transition: .2s ease;
+    }
+    .nav-links a:hover { color: var(--cyan); text-shadow: 0 0 12px var(--shadow-cyan); }
+    .resume-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .82rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border: 1px solid rgba(8,217,255,.55);
+      color: #bfefff;
+      padding: 14px 22px;
+      border-radius: 8px;
+      background: rgba(8,217,255,.03);
+      box-shadow: inset 0 0 0 1px rgba(155,77,255,.25);
+      transition: .2s ease;
+    }
+    .resume-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 28px rgba(8,217,255,.22), inset 0 0 0 1px rgba(155,77,255,.45);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 70px;
+      align-items: center;
+      padding-top: 120px;
+    }
+    .hero-kicker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: .02em;
+      margin-bottom: 18px;
+    }
+    .hero-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(4rem, 7vw, 7.6rem);
+      line-height: .9;
+      letter-spacing: .05em;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 26px;
+    }
+    .hero-title span {
+      display: block;
+      background: linear-gradient(90deg, #12a9ff 0%, #725cff 50%, #a94dff 100%);
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 35px rgba(8,217,255,.12);
+    }
+    .role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.18rem;
+      color: var(--cyan);
+      margin-bottom: 34px;
+    }
+    .role::before { content: "{ "; }
+    .role::after { content: " }"; }
+    .hero-copy {
+      max-width: 710px;
+      color: #cbd4e2;
+      font-size: 1.25rem;
+      line-height: 1.6;
+      font-weight: 500;
+      margin-bottom: 34px;
+    }
+    .hero-copy strong { color: white; }
+
+    .hero-actions {
+      display: flex;
+      gap: 22px;
+      margin-bottom: 45px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      width: 250px;
+      height: 58px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .9rem;
+      border-radius: 8px;
+      transition: .25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      box-shadow: 0 0 35px rgba(22,135,255,.32);
+    }
+    .btn-ghost {
+      border: 1px solid rgba(8,217,255,.45);
+      color: #d8f8ff;
+      background: rgba(8,217,255,.025);
+    }
+    .btn:hover { transform: translateY(-3px); }
+
+    .tech-label {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: 14px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .tech-label span { color: var(--cyan); font-size: 1.1rem; }
+    .tech-stack {
+      width: min(100%, 710px);
+      border: 1px solid rgba(8,217,255,.17);
+      background: rgba(255,255,255,.025);
+      border-radius: 10px;
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      padding: 18px 28px;
+      align-items: center;
+      box-shadow: inset 0 0 35px rgba(8,217,255,.035);
+    }
+    .tech-stack span {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      color: #dbeafe;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.08);
+      padding: 10px 12px;
+      border-radius: 8px;
+    }
+
+    .hero-photo-wrap {
+      justify-self: center;
+      width: min(100%, 500px);
+      position: relative;
+    }
+    .photo-frame {
+      height: 675px;
+      border: 2px solid rgba(8,217,255,.9);
+      border-right-color: rgba(155,77,255,.9);
+      border-bottom-color: rgba(155,77,255,.9);
+      clip-path: polygon(7% 0, 93% 0, 100% 9%, 100% 91%, 93% 100%, 7% 100%, 0 91%, 0 9%);
+      background: #111827;
+      box-shadow:
+        0 0 35px rgba(8,217,255,.32),
+        0 0 45px rgba(155,77,255,.25);
+      overflow: hidden;
+      position: relative;
+    }
+    .photo-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 15%, transparent 55%, rgba(2,7,19,.18) 100%);
+      pointer-events: none;
+    }
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 34%;
+      filter: saturate(1.06) contrast(1.02);
+    }
+
+    /* SECTIONS */
+    section:not(.hero) {
+      padding: 95px 0;
+      position: relative;
+    }
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.3rem, 4vw, 4rem);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 36px;
+    }
+    .section-title span {
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .panel {
+      border: 1px solid rgba(8,217,255,.18);
+      background: var(--panel);
+      border-radius: 18px;
+      padding: 30px;
+      box-shadow: 0 24px 70px rgba(0,0,0,.25), inset 0 0 25px rgba(8,217,255,.025);
+    }
+    .panel p {
+      color: var(--muted);
+      font-size: 1.12rem;
+      line-height: 1.72;
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+    .panel p:last-child { margin-bottom: 0; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .skill-card h3 {
+      font-family: 'Orbitron', sans-serif;
+      color: white;
+      margin-bottom: 15px;
+      letter-spacing: .04em;
+    }
+    .skill-card p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 18px;
+      font-size: 1.02rem;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+    .chips span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .75rem;
+      color: #bdf3ff;
+      border: 1px solid rgba(8,217,255,.17);
+      background: rgba(8,217,255,.045);
+      border-radius: 999px;
+      padding: 7px 10px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 22px;
+    }
+    .exp-card {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+    .date {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--cyan);
+      font-size: .9rem;
+      letter-spacing: .06em;
+    }
+    .exp-card h3 {
+      font-family: 'Orbitron', sans-serif;
+      margin-bottom: 6px;
+      font-size: 1.3rem;
+    }
+    .company {
+      color: var(--purple);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .exp-card ul {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+      line-height: 1.62;
+      font-size: 1.02rem;
+    }
+    .exp-card li::before {
+      content: "▸ ";
+      color: var(--cyan);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .project-card {
+      min-height: 355px;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-num {
+      color: rgba(255,255,255,.18);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+    .project-card h3 {
+      font-family: 'Orbitron', sans-serif;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+    .project-card p {
+      flex: 1;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 1.02rem;
+      margin-bottom: 18px;
+    }
+
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .metric {
+      text-align: center;
+      padding: 35px 18px;
+    }
+    .metric strong {
+      display: block;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.3rem;
+      color: var(--cyan);
+      margin-bottom: 8px;
+    }
+    .metric span {
+      color: var(--muted);
+      font-size: .98rem;
+    }
+
+    .contact-panel {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 30px;
+      align-items: center;
+    }
+    .contact-panel h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2rem, 4vw, 4rem);
+      margin-bottom: 12px;
+    }
+    .contact-panel p {
+      color: var(--muted);
+      font-size: 1.12rem;
+    }
+    .contact-icons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .icon {
+      width: 62px;
+      height: 62px;
+      border-radius: 14px;
+      border: 1px solid rgba(8,217,255,.35);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 800;
+      color: white;
+      background: rgba(8,217,255,.06);
+      transition: .22s ease;
+    }
+    .icon:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 25px rgba(8,217,255,.2);
+    }
+
+    footer {
+      border-top: 1px solid rgba(8,217,255,.15);
+      color: var(--muted);
+      padding: 30px 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .85rem;
+    }
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: .75s ease;
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media(max-width: 1100px) {
+      .nav-inner { grid-template-columns: 1fr auto; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding-top: 140px; }
+      .hero-photo-wrap { order: -1; width: min(100%, 430px); }
+      .photo-frame { height: 560px; }
+      .skills-grid, .projects-grid, .achievements-grid, .about-grid { grid-template-columns: 1fr; }
+      .exp-card, .contact-panel { grid-template-columns: 1fr; }
+      .contact-icons { justify-content: flex-start; }
+    }
+    @media(max-width: 640px) {
+      .container, .nav-inner { width: min(100% - 32px, var(--max)); }
+      .nav { height: 86px; }
+      .logo { font-size: 1.15rem; }
+      .resume-btn { display: none; }
+      .hero-title { font-size: 3rem; }
+      .hero-copy { font-size: 1.05rem; }
+      .btn { width: 100%; }
+      .photo-frame { height: 500px; }
+      .tech-stack { gap: 10px; padding: 15px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="particles"></div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#home" class="logo">Poojitha<br>Pasupula</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="assets/Poojitha_Pasupula_Resume.pdf" class="resume-btn" target="_blank">Download Resume ↓</a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="home" class="hero container">
+      <div class="hero-left reveal">
+        <p class="hero-kicker">Hi, I’m</p>
+        <h1 class="hero-title">Poojitha<span>Pasupula</span></h1>
+        <p class="role">Java Full Stack Developer & AI/ML Enthusiast</p>
+        <p class="hero-copy">
+          I build <strong>intelligent, scalable and high-performance enterprise applications</strong>
+          using modern technologies and clean architecture. Passionate about solving real-world
+          problems with code.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View My Work →</a>
+          <a href="#contact" class="btn btn-ghost">Get In Touch →</a>
+        </div>
+
+        <p class="tech-label"><span>&lt;/&gt;</span> Tech Stack</p>
+        <div class="tech-stack">
+          <span>Java</span><span>Spring</span><span>React</span><span>Angular</span>
+          <span>Node</span><span>Python</span><span>Kafka</span><span>Docker</span>
+          <span>AWS</span><span>Azure</span>
+        </div>
+      </div>
+
+      <div class="hero-photo-wrap reveal">
+        <div class="photo-frame">
+          <img src="assets/profile.png" alt="Poojitha Pasupula">
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="container">
+      <h2 class="section-title reveal">About <span>Me</span></h2>
+      <div class="about-grid">
+        <div class="panel reveal">
+          <p>I’m a Java Full Stack Developer with 4+ years building backend-heavy enterprise systems for healthcare and financial services.</p>
+          <p>I specialize in Java 8–17, Spring Boot, Spring Cloud, Microservices, REST APIs, GraphQL, Apache Kafka, AWS, Azure, Docker, Kubernetes, React, and Angular.</p>
+          <p>I care about systems that are secure, scalable, observable, and easy for teams to maintain.</p>
+        </div>
+        <div class="panel reveal">
+          <p>My work includes healthcare platforms, financial transaction systems, Kafka event pipelines, Spring Batch reconciliation jobs, secure APIs, and AI-powered full-stack projects.</p>
+          <p>I’m also building AI/ML projects using LLM APIs, semantic search, recommendation systems, NLP pipelines, and Python-based ML workflows.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="container">
+      <h2 class="section-title reveal">Technical <span>Skills</span></h2>
+      <div class="skills-grid">
+        <div class="panel skill-card reveal">
+          <h3>Backend</h3>
+          <p>Enterprise Java APIs, microservices, batch systems, and secure service design.</p>
+          <div class="chips"><span>Java 17</span><span>Spring Boot</span><span>Spring Cloud</span><span>Hibernate</span><span>JPA</span><span>Spring Batch</span></div>
+        </div>
+        <div class="panel skill-card reveal">
+          <h3>Frontend</h3>
+          <p>Responsive user interfaces and enterprise dashboards connected to API platforms.</p>
+          <div class="chips"><span>React</span><span>Angular</span><span>TypeScript</span><span>JavaScript</span><span>HTML5</span><span>CSS3</span></div>
+        </div>
+        <div class="panel skill-card reveal">
+          <h3>APIs & Security</h3>
+          <p>Secure integration layers for healthcare, fintech, and cloud applications.</p>
+          <div class="chips"><span>REST</span><span>GraphQL</span><span>OAuth2</span><span>JWT</span><span>OIDC</span><span>RBAC</span></div>
+        </div>
+        <div class="panel skill-card reveal">
+          <h3>Messaging</h3>
+          <p>Event-driven architecture and asynchronous communication at scale.</p>
+          <div class="chips"><span>Kafka</span><span>JMS</span><span>RabbitMQ</span><span>ActiveMQ</span><span>IBM MQ</span></div>
+        </div>
+        <div class="panel skill-card reveal">
+          <h3>Cloud & DevOps</h3>
+          <p>Cloud-native delivery, CI/CD, containerization, and observability.</p>
+          <div class="chips"><span>AWS</span><span>Azure</span><span>Docker</span><span>Kubernetes</span><span>Jenkins</span><span>GitHub Actions</span></div>
+        </div>
+        <div class="panel skill-card reveal">
+          <h3>Databases & AI</h3>
+          <p>Relational, NoSQL, caching, and AI/ML integration layers.</p>
+          <div class="chips"><span>PostgreSQL</span><span>Oracle</span><span>MongoDB</span><span>Redis</span><span>OpenAI API</span><span>Python</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="container">
+      <h2 class="section-title reveal">Experience</h2>
+      <div class="timeline">
+        <div class="panel exp-card reveal">
+          <p class="date">Sep 2025 – Present</p>
+          <div>
+            <h3>Java Full Stack Developer</h3>
+            <p class="company">Hartford HealthCare</p>
+            <ul>
+              <li>Designed and deployed cloud-native microservices using Java 17, Spring Boot, and Spring Cloud.</li>
+              <li>Built secure RESTful and GraphQL APIs with OAuth2, JWT, OpenID Connect, and Spring Security.</li>
+              <li>Developed Kafka-based real-time data ingestion pipelines and production observability dashboards.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel exp-card reveal">
+          <p class="date">Mar 2025 – Aug 2025</p>
+          <div>
+            <h3>Java Full Stack Developer</h3>
+            <p class="company">Cigna Healthcare</p>
+            <ul>
+              <li>Built HIPAA-compliant microservices for claims processing and eligibility verification.</li>
+              <li>Developed Kafka event pipelines and React/Angular dashboards for member workflows.</li>
+              <li>Containerized services with Docker and Kubernetes and automated deployments through CI/CD.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="panel exp-card reveal">
+          <p class="date">Apr 2022 – Jul 2024</p>
+          <div>
+            <h3>Java Developer</h3>
+            <p class="company">BNP Paribas</p>
+            <ul>
+              <li>Designed secure microservices for financial platforms aligned with PCI-DSS and SOX practices.</li>
+              <li>Built Kafka transaction monitoring pipelines integrated with AI-assisted fraud detection modules.</li>
+              <li>Developed Spring Batch jobs to reconcile high-volume financial records.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="container">
+      <h2 class="section-title reveal">Projects</h2>
+      <div class="projects-grid">
+        <div class="panel project-card reveal">
+          <div class="project-num">01</div>
+          <h3>Healthcare Microservices Platform</h3>
+          <p>Secure cloud-native healthcare workflow platform with REST/GraphQL APIs, Kafka event processing, and observability.</p>
+          <div class="chips"><span>Java</span><span>Spring Boot</span><span>Kafka</span><span>AWS</span></div>
+        </div>
+        <div class="panel project-card reveal">
+          <div class="project-num">02</div>
+          <h3>Transaction Monitoring System</h3>
+          <p>FinTech monitoring platform with Kafka streaming, Spring Batch reconciliation, Redis caching, and React dashboards.</p>
+          <div class="chips"><span>Spring Batch</span><span>Kafka</span><span>Redis</span><span>React</span></div>
+        </div>
+        <div class="panel project-card reveal">
+          <div class="project-num">03</div>
+          <h3>AI E-commerce Assistant</h3>
+          <p>LLM-powered shopping assistant with semantic search, product Q&A, recommendations, and review summarization.</p>
+          <div class="chips"><span>LLM</span><span>React</span><span>Spring Boot</span><span>Python</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="achievements" class="container">
+      <h2 class="section-title reveal">Achievements</h2>
+      <div class="achievements-grid">
+        <div class="panel metric reveal"><strong>200K+</strong><span>Daily healthcare transactions</span></div>
+        <div class="panel metric reveal"><strong>1M+</strong><span>Kafka events processed</span></div>
+        <div class="panel metric reveal"><strong>5M+</strong><span>Financial records reconciled</span></div>
+        <div class="panel metric reveal"><strong>40%</strong><span>Deployment time reduction</span></div>
+      </div>
+    </section>
+
+    <section id="contact" class="container">
+      <div class="panel contact-panel reveal">
+        <div>
+          <h2>Get In Touch</h2>
+          <p>Reach out for Java Full Stack, Backend, Microservices, Cloud Java, and AI-integrated engineering roles.</p>
+        </div>
+        <div class="contact-icons">
+          <a class="icon" href="mailto:poojithapasupula02@gmail.com" title="Email">✉</a>
+          <a class="icon" href="https://www.linkedin.com/in/poojitha-pasupula" target="_blank" title="LinkedIn">in</a>
+          <a class="icon" href="https://github.com/" target="_blank" title="GitHub">GH</a>
+          <a class="icon" href="assets/Poojitha_Pasupula_Resume.pdf" target="_blank" title="Resume">CV</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <p>© 2026 Poojitha Pasupula</p>
+      <a href="#home">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    const revealItems = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('in');
+      });
+    }, { threshold: 0.12 });
+
+    revealItems.forEach((item, index) => {
+      item.style.transitionDelay = `${Math.min(index * 0.04, 0.22)}s`;
+      observer.observe(item);
+    });
+  </script>
+</body>
+</html>
